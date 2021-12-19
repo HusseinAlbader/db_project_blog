@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.category.index');
+        $data = Category::all();
+        return view('backend.category.index', ['data'=>$data]);
     }
 
     /**
@@ -44,6 +45,8 @@ class CategoryController extends Controller
             $reImage = time().'.'.$image->getClientOriginalExtension();
             $dest = '/imgs';
             $image->move($dest, $reImage);
+        } else {
+            $reImage = $request->cat_image;
         }
 
         $category = new Category();
@@ -56,17 +59,6 @@ class CategoryController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -74,7 +66,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Category::find($id);
+        return view('backend.category.update', ['data'=>$data]);
     }
 
     /**
@@ -86,7 +79,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'title'=>'required'
+        ]);
+
+        if ($request->hasFile('cat_image')) {
+            $image = $request->file('cat_image');
+            $reImage = time().'.'.$image->getClientOriginalExtension();
+            $dest = '/imgs';
+            $image->move($dest, $reImage);
+        }
+
+        $category = Category::find($id);
+        $category->title = $request->title;
+        $category->detail = $request->detail;
+        $category->image = $reImage;
+        $category->save();
+
+        return redirect('admin/category/'.$id.'/edit')->with('success', 'Data has been added');
     }
 
     /**

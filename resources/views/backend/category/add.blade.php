@@ -9,6 +9,8 @@
 <body>
     <h3>Kategori Ekle</h3>
 
+    <a href="{{url('admin/category')}}">Tüm postlar</a>
+
     @if ($errors)
         @foreach($errors->all() as $error)
             <p class="text-danger">{{$error}}</p>
@@ -18,7 +20,7 @@
     @if (Session::has('success'))
         <p class="text-success">{{session('success')}}</p>
     @endif
-    
+
     <form method="POST" action="{{url('admin/category')}}" enctype="multipart/form-data">
         @csrf
         <input name="title" type="text">
