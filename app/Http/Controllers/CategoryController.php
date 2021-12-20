@@ -43,7 +43,7 @@ class CategoryController extends Controller
         if ($request->hasFile('cat_image')) {
             $image = $request->file('cat_image');
             $reImage = time().'.'.$image->getClientOriginalExtension();
-            $dest = '/imgs';
+            $dest = $public_path('/imgs');
             $image->move($dest, $reImage);
         } else {
             $reImage = $request->cat_image;
@@ -107,6 +107,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::where('id', $id)->delete();
+        return redirect('admin/category/');
     }
 }

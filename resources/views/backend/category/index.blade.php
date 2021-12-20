@@ -31,7 +31,7 @@
                     </td>
                     <td>
                         <a href="{{url('admin/category/'.$cat->id.'/edit')}}">Düzenle</a>
-                        <a href="{{url('admin/category/'.$cat->id.'/delete')}}">Sil</a>
+                        <a onclick="return confirm return('Silmek istediğinizden emin misiniz?')" href="{{url('admin/category/'.$cat->id.'/delete')}}">Sil</a>
                     </td>
                 </tr>
                 @endforeach                
