@@ -7,9 +7,15 @@ use App\Models\Post;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
+        if ($request->has('q')) {
+            $q = $request->q;
+            $posts = Post::where('title', 'like', '%'.$q.'%')->orderBy('id', 'desc')->paginate(1);
+        } else {
+            $posts = Post::orderBy('id', 'desc')->paginate(1);
+        }
+        
         return view('index', ['posts'=>$posts]);
     }
 }

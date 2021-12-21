@@ -57,21 +57,28 @@
                 </div>
                 <!-- Pagination -->
                 {{$posts->links()}}
-            </div> 
+            </div>
+
+
+
             <!-- Sag sidebar -->
             <div class="col-md-4">
+
                 <!-- Arama input -->                
                 <div class="card mb-4">
                     <h5 class="card-header">Ara</h5>
                     <div class="card-body">
-                        <div class="input-group">
-                            <input type="text" class="form-control">
-                            <div class="input-group-append">
-                                <button class="btn btn-dark" type="button">Ara</button>
+                        <form action="{{url('/')}}">
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control">
+                                <div class="input-group-append">
+                                    <button class="btn btn-dark" type="button">Ara</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
+
                 <!-- Son eklenen makaleler -->                
                 <div class="card mb-4">
                     <h5 class="card-header">En Son Eklenenler</h5>                    
@@ -84,6 +91,7 @@
                     </div>
                     
                 </div>
+
                 <!-- Populer makaleler -->                
                 <div class="card mb-4">
                     <h5 class="card-header">En Çok Okunanlar</h5>                    
