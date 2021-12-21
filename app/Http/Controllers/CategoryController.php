@@ -43,19 +43,19 @@ class CategoryController extends Controller
         if ($request->hasFile('cat_image')) {
             $image = $request->file('cat_image');
             $reImage = time().'.'.$image->getClientOriginalExtension();
-            $dest = $public_path('/imgs');
+            $dest = public_path('/imgs');
             $image->move($dest, $reImage);
         } else {
             $reImage = $request->cat_image;
         }
-
+        // save data
         $category = new Category();
         $category->title = $request->title;
         $category->detail = $request->detail;
         $category->image = $reImage;
         $category->save();
 
-        return redirect('admin/category/create')->with('success', 'Data has been added');
+        return redirect('admin/category/create')->with('success', 'Veriler basariyla eklendi.');
     }
 
     /**
