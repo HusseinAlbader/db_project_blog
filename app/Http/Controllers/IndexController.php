@@ -9,7 +9,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
         return view('index', ['posts'=>$posts]);
     }
 }

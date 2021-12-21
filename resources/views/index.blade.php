@@ -35,7 +35,7 @@
     <main class="container mt-4">
         <div class="row">
             <div class="col-md-8">
-                <div class="row">
+                <div class="row mb-5">
                     @if (count($posts) > 0)
                         @foreach ($posts as $post)
                         <div class="col-md-4">
@@ -55,6 +55,8 @@
                         <p class="alert alert-danger">Maalesef hiçbir makale bulunamadı.</p>
                     @endif
                 </div>
+                <!-- Pagination -->
+                {{$posts->links()}}
             </div> 
             <!-- Sag sidebar -->
             <div class="col-md-4">
