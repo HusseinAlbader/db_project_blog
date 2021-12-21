@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" href="#">My Blog</a>
+            <a class="navbar-brand" href="{{url('/')}}">My Blog</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -76,8 +76,11 @@
                 <div class="card mb-4">
                     <h5 class="card-header">En Son Eklenenler</h5>                    
                     <div class="list-group list-group-flush">
-                        <a href="#" class="list-group-item">Post 1</a>
-                        <a href="#" class="list-group-item">Post 2</a>
+                        @if ($recent_posts)
+                            @foreach ($recent_posts as $post)
+                            <a href="#" class="list-group-item">{{$post->title}}</a>
+                            @endforeach
+                        @endif
                     </div>
                     
                 </div>
