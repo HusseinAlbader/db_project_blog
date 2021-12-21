@@ -18,4 +18,11 @@ class IndexController extends Controller
         
         return view('index', ['posts'=>$posts]);
     }
+
+    // Post Detail
+    public function detail(Request $request, $slug,  $postId)
+    {
+        $detail = Post::find($postId);
+        return view('detail', ['detail' => $detail]);
+    }
 }

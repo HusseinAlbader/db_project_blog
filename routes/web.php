@@ -21,6 +21,7 @@ use App\Http\Controllers\CategoryController;
 // });
 
 Route::get('/',[IndexController::class,'index']);
+Route::get(' /detail/{slug}/{id}', [IndexController::class, 'detail']);
 
 Route::get('admin/login',[AdminController::class,'login']);
 Route::post('admin/login',[AdminController::class,'submit_login']);
